@@ -1,0 +1,22 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}Ads{% endblock title %}
+
+{% block content %}
+    <br><br>
+    {% if board %}
+        {% for post in board %}
+            <a href="/board/{{ post.id }}" style="font-size: 20px;"><b>{{ post.title }}</b></a><br>
+            <span style="font-size: 12px;"><b>Автор:  {{ post.author }} |
+                Дата публикации: {{ post.time_in|date:'d.M.Y' }} г.</b></span><br><br>
+        {% endfor %}
+    {% else %}
+        <br><br>
+        <h2>Публикаций нет!</h2>
+    {% endif %}
+
+    {% if user.is_authenticated %}
+        <br><br><br>
+        <a class="btn btn-secondary" href="{% url 'post_create' %}" role="button">Добавить новое объявление</a>
+    {% endif %}
+{% endblock content %}

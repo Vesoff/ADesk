@@ -1,0 +1,35 @@
+{% extends 'flatpages/default.html' %}
+
+{% block title %}
+Search
+{% endblock title %}
+
+{% block content %}
+    <h1>Поиск публикаций:</h1>
+    <form action="" method="get">
+       {{ filterset.form.as_p }}
+        <input type="submit" value="Найти" />
+    </form>
+
+     {% if search %}
+        <h4>
+            <table> <!-- Начинаем описывать таблицу -->
+                <tr>
+                    <td> Наименование </td>
+                    <td> Дата </td>
+                    <td> Текст </td>
+                </tr>
+
+                {% for post in search %}
+                <tr>
+                    <td><a href="/board/{{ post.id }}" style="font-size: 20px;"><b>{{ post.title }}</b></a></td>
+                    <td>{{ post.time_in|date:'M d Y'}}</td>
+                    <td>{{ post.text | safe }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </h4>
+    {% else %}
+        <h2>Объявлений нет!</h2>
+    {% endif %}
+{% endblock content %}

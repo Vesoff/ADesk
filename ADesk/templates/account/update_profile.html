@@ -1,0 +1,18 @@
+{% extends 'flatpages/default.html' %}
+{% block title %}Profile update{% endblock %}
+{% block content %}
+
+<br><br>
+<h2>Редактирование профиля:</h2><br>
+
+<form method="post">
+	{% csrf_token %}
+	{{ form.as_p }}
+	 <input type="submit" class="btn btn-secondary" value="Сохранить"/>
+</form>
+<br>
+	<a class="btn btn-secondary" href="{% url 'account_profile' %}" role="button">Закрыть</a>
+<br> <br>
+	<a class="btn btn-secondary" href="{% url 'account_logout' %}" role="button">Выйти из аккаунта</a>
+
+{% endblock content %}
